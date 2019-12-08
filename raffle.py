@@ -4,8 +4,11 @@ import random
 
 
 def find_winner():
-    winner = entries[random.randint(0, len(entries))].split()
-    print("The winner is: {} {} in Grade {}!".format(winner[0], winner[1], winner[2]))
+    if len(entries) > 0:
+        winner = entries[random.randint(0, len(entries)-1)].split()
+        print("The winner is: {} {} in Grade {}!".format(winner[0], winner[1], winner[2]))
+    else:
+        print("No winner found.")
 
 
 entries = []
@@ -24,6 +27,7 @@ while True:
         print(">> {} candles have been sold.".format(len(entries)))
     elif entry == "winner":
         find_winner()
+        break
     else:
         entries.append(entry)
 
