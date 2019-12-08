@@ -11,7 +11,9 @@ def find_winner():
         print("No winner found.")
 
 
-entries = []
+with open("records.txt", "r") as file:
+    entries = eval(file.readline())
+
 while True:
     entry = input("Enter a name: ")
     if entry == "exit":
@@ -31,4 +33,6 @@ while True:
     else:
         entries.append(entry)
 
-print(entries)  # copy this to use raffle over several days
+# save list to separate file
+with open("records.txt", "w") as file:
+    file.write(str(entries))
