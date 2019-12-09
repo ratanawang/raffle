@@ -19,8 +19,8 @@ while True:
     if entry == "exit":
         break
     elif entry == "remove" and len(entries) > 0:
-        entries.remove(entries[len(entries)-1])
-        print(">> Last entry removed")
+        print(">> Last entry removed. ({})".format(entries[len(entries)-1]))
+        entries.remove(entries[len(entries) - 1])
     elif entry == "last" and len(entries) > 0:
         print(">> The last entry was: {}".format(entries[len(entries)-1]))
     elif entry == "people":
@@ -30,9 +30,18 @@ while True:
     elif entry == "winner":
         find_winner()
         break
+    elif entry == "clear":
+        confirm = input("Are you sure you want to clear the list? ")
+        if confirm == "yes":
+            entries = []
+            print(">> List cleared.")
+    elif entry == "save":
+        with open("records.txt", "w") as file:
+            file.write(str(entries))
+        print(">> List saved.")
     else:
         entries.append(entry)
 
-# save list to separate file
+# auto-save list to separate file
 with open("records.txt", "w") as file:
     file.write(str(entries))
